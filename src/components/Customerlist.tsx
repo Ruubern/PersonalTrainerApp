@@ -3,19 +3,22 @@ import type { Customer } from "../types";
 import { DataGrid, } from "@mui/x-data-grid";
 import type { GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
 import Button from "@mui/material/Button";
+import { getCustomers } from "../customerApi";
 
 
 function Customerlist() {
+    
+    const fetchCustomers = () => {
+        getCustomers()
+                .then(data => setCustomers(data._embedded))
+                .catch(err => console.error(err))
+    }
+
     const [customers, setCustomers] = useState<Customer[]>([])
     useEffect(() => {
         fetchCustomers();
     }, [])
 
-    const fetchCustomers() = () => {
-        getCustomers()
-                .then(data => setCustomers(data._embedded))
-                .catch(err => console.error(err))
-    }
 
     const columns: GridColDef[] = [
         { field: "firstname"},
@@ -57,3 +60,4 @@ function Customerlist() {
 
 }
 
+export default Customerlist;
