@@ -10,7 +10,7 @@ function Customerlist() {
     
     const fetchCustomers = () => {
         getCustomers()
-                .then(data => setCustomers(data._embedded))
+                .then(data => setCustomers(data._embedded.customers))
                 .catch(err => console.error(err))
     }
 
@@ -32,13 +32,13 @@ function Customerlist() {
             headerName: "",
             sortable: false,
             filterable:false,
-            field: "_links.self.href",
+            field: "edit",
             //rendercell tähän
         },{//Button field for delete
             headerName: "",
             sortable: false,
             filterable:false,
-            field: "_links.self.href",
+            field: "delete",
             //rendercell tähän
         }
         
@@ -46,7 +46,7 @@ function Customerlist() {
 
     return (
         <>
-            <div style = {{ width: "90%", height: 500, margin: "auto" }}>
+            <div style = {{ width: "100%", height: 500, margin: "auto" }}>
                 <DataGrid
                     rows={customers}
                     columns={columns}
