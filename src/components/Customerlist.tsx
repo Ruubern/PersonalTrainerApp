@@ -46,7 +46,7 @@ function Customerlist() {
 
     return (
         <>
-            <div style = {{ width: "100%", height: 500, margin: "auto" }}>
+            <div style = {{ width: 800, height: 500, margin: "auto" }}>
                 <DataGrid
                     rows={customers}
                     columns={columns}

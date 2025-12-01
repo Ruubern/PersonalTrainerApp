@@ -1,4 +1,4 @@
-export function getCustomers() {
+export function getTrainings() {
 
     return fetch(import.meta.env.VITE_API_URL + '/trainings')
     .then(response => {
