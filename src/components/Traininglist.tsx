@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { DataGrid, } from "@mui/x-data-grid";
-import type { GridColDef } from "@mui/x-data-grid";
+import type { GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
 import { getTrainings } from "../trainingApi";
 import type { Training } from "../types";
+import dayjs from "dayjs";
 
 function Traininglist() {
     
@@ -17,9 +18,13 @@ function Traininglist() {
         fetchTrainings();
     }, [])
 
+    
 
     const columns: GridColDef[] = [
-        { field: "date"},
+        { field: "date",
+        renderCell: (params: GridRenderCellParams<Training>) => {
+        return dayjs(params.value).format("DD.MM.YYYY HH:mm")
+        }},
         { field: "duration"},
         { field: "activity"},
         {//Button field for edit
