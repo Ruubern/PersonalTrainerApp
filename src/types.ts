@@ -13,6 +13,8 @@ export type Customer = {
     }
 }
 
+export type CustomerForm = Omit<Customer, "_links">;
+
 export type Training = {
     date: Date;
     duration: number;

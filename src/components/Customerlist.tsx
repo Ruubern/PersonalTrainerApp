@@ -4,6 +4,8 @@ import { DataGrid, } from "@mui/x-data-grid";
 import type { GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
 import Button from "@mui/material/Button";
 import { getCustomers } from "../customerApi";
+import { Add } from "@mui/icons-material";
+import AddCustomer from "./AddCustomer";
 
 
 function Customerlist() {
@@ -46,6 +48,7 @@ function Customerlist() {
 
     return (
         <>
+            <AddCustomer fetchCustomers={fetchCustomers} />
             <div style = {{ width: 800, height: 500, margin: "auto" }}>
                 <DataGrid
                     rows={customers}
