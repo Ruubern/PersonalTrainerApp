@@ -7,6 +7,8 @@ import { getCustomers } from "../customerApi";
 import { Add, Edit } from "@mui/icons-material";
 import AddCustomer from "./AddCustomer";
 import EditCustomer from "./EditCustomer";
+import { deleteCustomer } from "../customerApi";
+
 
 
 function Customerlist() {
@@ -22,6 +24,13 @@ function Customerlist() {
         fetchCustomers();
     }, [])
 
+    const handleDelete = (customerUrl: string) => {
+        if (window.confirm("Are you sure you want to delete this customer?")) {
+            deleteCustomer(customerUrl)
+                .then(() => fetchCustomers())
+                .catch(err => console.error(err));
+        }
+    }
 
     const columns: GridColDef[] = [
         { field: "firstname"},
@@ -43,8 +52,11 @@ function Customerlist() {
             headerName: "",
             sortable: false,
             filterable:false,
-            field: "delete",
-            //rendercell tähän
+            field: "_links.self.href",
+            renderCell: (params: GridRenderCellParams) =>
+                <Button color ="error" onClick={() => handleDelete(params.id as string)}>
+                    Delete
+                </Button>
         }
         
     ]

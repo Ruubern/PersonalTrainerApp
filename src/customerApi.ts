@@ -26,3 +26,15 @@ export function saveCustomer(newCustomer: CustomerForm) {
         return response.json();
     })
 }
+
+export function deleteCustomer(customerUrl: string) {
+
+    return fetch(customerUrl, {
+        method: 'DELETE'
+    })
+    .then(response => {
+        if (!response.ok)
+            throw new Error("Error when deleting customer: " + response.statusText)
+        response.json();
+    })
+}
