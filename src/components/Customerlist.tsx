@@ -4,8 +4,9 @@ import { DataGrid, } from "@mui/x-data-grid";
 import type { GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
 import Button from "@mui/material/Button";
 import { getCustomers } from "../customerApi";
-import { Add } from "@mui/icons-material";
+import { Add, Edit } from "@mui/icons-material";
 import AddCustomer from "./AddCustomer";
+import EditCustomer from "./EditCustomer";
 
 
 function Customerlist() {
@@ -34,8 +35,10 @@ function Customerlist() {
             headerName: "",
             sortable: false,
             filterable:false,
-            field: "edit",
-            //rendercell tähän
+            field: "_links.customer.href",
+            renderCell: (params: GridRenderCellParams) =>
+                <EditCustomer fetchCustomers={fetchCustomers} customerRow={params.row} />
+            
         },{//Button field for delete
             headerName: "",
             sortable: false,
