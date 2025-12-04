@@ -14,41 +14,50 @@ function App() {
   };
 
   return (
-    <>
+    <Box sx={{ display: 'flex'}}>
       <CssBaseline />
-      <AppBar>
+      <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
         <Toolbar>
-          <IconButton color="inherit" edge="start" onClick={() => setOpen(true)}>
+          <IconButton color="inherit" edge="start" onClick={() => setOpen(true)} sx={{ mr: 2 }}>
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6">PersonalTrainerApp</Typography>
+          <Typography variant="h6" noWrap>
+            PersonalTrainerApp
+          </Typography>
         </Toolbar>
       </AppBar>
-
-      <Drawer anchor="left" open={open} onClose={() => setOpen(false)}>
-        <List>
-          <ListItem disablePadding>
-            <ListItemButton onClick={() => handleViewChange('customers')}>
-              <ListItemText primary="Customers" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem disablePadding>
-            <ListItemButton onClick={() => handleViewChange('trainings')}>
-              <ListItemText primary="Trainings" />
-            </ListItemButton>
-          </ListItem>
-        </List>
+      
+      <Drawer 
+      anchor="left" 
+      open={open} 
+      onClose={() => setOpen(false)}
+      ModalProps={{keepMounted: true}}>
+          <List>
+            <ListItem disablePadding>
+              <ListItemButton onClick={() => handleViewChange('customers')}>
+                <ListItemText primary="Customers" />
+              </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemButton onClick={() => handleViewChange('trainings')}>
+                <ListItemText primary="Trainings" />
+              </ListItemButton>
+            </ListItem>
+          </List>
       </Drawer>
 
-      <Container sx={{ mt: 12 }}>
-        <Box sx={{ maxWidth: 900, margin: '0 auto' }}>
-          {view === 'customers' && <Customerlist />}
-          {view === 'trainings' && <Traininglist />}
-        </Box>
-      </Container>
+      <Toolbar />
+      <Box 
+        component="main" 
+        sx={{ flexGrow: 1, 
+        p: 3, margin: "0 auto", 
+        maxWidth: 1800,
+        width: '100%'}}>
 
-
-    </>
+        {view === 'customers' && <Customerlist />}
+        {view === 'trainings' && <Traininglist />}
+      </Box>
+    </Box>
   );
 }
 
