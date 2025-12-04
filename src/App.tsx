@@ -3,12 +3,13 @@ import { AppBar, Toolbar, Typography, CssBaseline, Drawer, IconButton, List, Lis
 import Customerlist from './components/Customerlist';
 import Traininglist from './components/Traininglist';
 import MenuIcon from '@mui/icons-material/Menu';
+import TrainingCalendar from './components/TrainingCalendar';
 
 function App() {
   const [open, setOpen] = useState(false);
   const [view, setView] = useState('customers');
 
-  const handleViewChange = (newView: 'customers' | 'trainings') => {
+  const handleViewChange = (newView: 'customers' | 'trainings' | 'calendar') => {
     setView(newView);   //Asettaa uuden näkymän
     setOpen(false);     //Sulkee drawerin valinnan jälkeen
   };
@@ -43,6 +44,11 @@ function App() {
                 <ListItemText primary="Trainings" />
               </ListItemButton>
             </ListItem>
+            <ListItem disablePadding>
+              <ListItemButton onClick={() => handleViewChange('calendar')}>
+                <ListItemText primary="Calendar" />
+              </ListItemButton>
+            </ListItem>
           </List>
       </Drawer>
 
@@ -56,6 +62,7 @@ function App() {
 
         {view === 'customers' && <Customerlist />}
         {view === 'trainings' && <Traininglist />}
+        {view === 'calendar' && <TrainingCalendar />}
       </Box>
     </Box>
   );

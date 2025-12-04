@@ -16,13 +16,19 @@ export type Customer = {
 export type CustomerForm = Omit<Customer, "_links">;
 
 export type Training = {
+    id: number;
     date: Date;
     duration: number;
     activity: string;
-    _links: {
-        self: string;
-        training: string;
-        customer: string;
+    customer: {
+        id: number;
+        firstname: string;
+        lastname: string;
+        streetaddress: string;
+        postcode: string;
+        city: string;
+        email: string;
+        phone: string;
     }
 
 }
@@ -33,3 +39,10 @@ export type TrainingForm = {
     activity: string;
     customer: string;
 }
+
+export type CalendarEvent = {
+    id: string;
+    title: string;
+    start: string;
+    end: string;
+};

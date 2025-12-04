@@ -38,3 +38,12 @@ export function saveTraining(newTraining: TrainingForm) {
         return response.json();
     })
 }
+
+export function getTrainingSessions() {
+    return fetch(import.meta.env.VITE_API_URL + '/gettrainings')
+        .then(response => {
+            if (!response.ok)
+                throw new Error("Error when fetching session info: " + response.statusText)
+            return response.json();
+        })
+}
