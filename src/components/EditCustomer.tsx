@@ -84,7 +84,7 @@ export default function EditCustomer({ fetchCustomers, customerRow }: EditCustom
                 Edit
             </Button>
             <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Edit Car</DialogTitle>
+                <DialogTitle>Edit Customer</DialogTitle>
                 <DialogContent>
 
                     <TextField
