@@ -13,11 +13,11 @@ import { getTrainings } from "../trainingApi";
 
 
 function Customerlist() {
-    
+
     const fetchCustomers = () => {
         getCustomers()
-                .then(data => setCustomers(data._embedded.customers))
-                .catch(err => console.error(err))
+            .then(data => setCustomers(data._embedded.customers))
+            .catch(err => console.error(err))
     }
 
     const [customers, setCustomers] = useState<Customer[]>([])
@@ -34,53 +34,75 @@ function Customerlist() {
     }
 
     const columns: GridColDef[] = [
-        { field: "firstname"},
-        { field: "lastname"},
-        { field: "streetaddress"},
-        { field: "postcode"},
-        { field: "city"},
-        { field: "email"},
-        { field: "phone"},
+        { field: "firstname" },
+        { field: "lastname" },
+        { field: "streetaddress" },
+        { field: "postcode" },
+        { field: "city" },
+        { field: "email" },
+        { field: "phone" },
+        
         {//Button field for edit
             headerName: "",
             sortable: false,
-            filterable:false,
+            filterable: false,
             field: "_links.customer.href",
             renderCell: (params: GridRenderCellParams) =>
-                <EditCustomer fetchCustomers={fetchCustomers} customerRow={params.row} />
-            
-        },{//Button field for delete
+                <EditCustomer 
+                    fetchCustomers={fetchCustomers} 
+                    customerRow={params.row} />,
+                    disableExport: true
+
+        }, 
+        
+        {//Button field for delete
             headerName: "",
             sortable: false,
-            filterable:false,
+            filterable: false,
             field: "_links.self.href",
             renderCell: (params: GridRenderCellParams) =>
-                <Button color ="error" onClick={() => handleDelete(params.id as string)}>
+                <Button color="error" onClick={() => handleDelete(params.id as string)}>
                     Delete
-                </Button>
-        },{//Button field for adding a training session
+                </Button>,
+                disableExport: true
+        }, 
+        
+        {//Button field for adding a training session
             headerName: "",
             sortable: false,
-            filterable:false,
+            filterable: false,
             field: "addTraining",
-            renderCell: (params: GridRenderCellParams) => (
-                <AddTrainingsession 
+            renderCell: (params: GridRenderCellParams) =>
+                <AddTrainingsession
                     fetchTrainings={getTrainings}
-                    customerLink={params.row._links.self.href} 
-                    />
-        )}];
+                    customerLink={params.row._links.self.href}/>,
+                    disableExport: true
+        }];
 
     return (
         <>
             <AddCustomer fetchCustomers={fetchCustomers} />
-            <div style = {{ width: 800, height: 500, margin: "auto" }}>
+            <div style={{ width: 800, height: 500, margin: "auto" }}>
                 <DataGrid
                     rows={customers}
                     columns={columns}
                     getRowId={row => row._links.self.href}
                     autoPageSize
                     rowSelection={false}
-                    />
+                    //CSV export
+                    showToolbar
+                    slotProps={{
+                        toolbar: {
+                            csvOptions: {
+                                fileName: "customerData",
+                                delimiter: ";",
+                                utf8WithBom: true,
+                                allColumns: false,
+                            }
+                        }
+                    }
+                    }
+                />
             </div>
         </>
     )
