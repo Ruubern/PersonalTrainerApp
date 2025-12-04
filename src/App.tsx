@@ -33,7 +33,7 @@ function App() {
       open={open} 
       onClose={() => setOpen(false)}
       ModalProps={{keepMounted: true}}>
-          <List>
+          <List sx={{ marginTop: 8 }}>
             <ListItem disablePadding>
               <ListItemButton onClick={() => handleViewChange('customers')}>
                 <ListItemText primary="Customers" />
