@@ -26,3 +26,10 @@ export type Training = {
     }
 
 }
+
+export type TrainingForm = {
+    date: Date;
+    duration: number;
+    activity: string;
+    customer: string;
+}

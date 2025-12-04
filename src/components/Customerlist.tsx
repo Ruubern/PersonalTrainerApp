@@ -8,7 +8,8 @@ import { Add, Edit } from "@mui/icons-material";
 import AddCustomer from "./AddCustomer";
 import EditCustomer from "./EditCustomer";
 import { deleteCustomer } from "../customerApi";
-
+import AddTrainingsession from "./AddTrainingsession";
+import { getTrainings } from "../trainingApi";
 
 
 function Customerlist() {
@@ -57,9 +58,17 @@ function Customerlist() {
                 <Button color ="error" onClick={() => handleDelete(params.id as string)}>
                     Delete
                 </Button>
-        }
-        
-    ]
+        },{//Button field for adding a training session
+            headerName: "",
+            sortable: false,
+            filterable:false,
+            field: "addTraining",
+            renderCell: (params: GridRenderCellParams) => (
+                <AddTrainingsession 
+                    fetchTrainings={getTrainings}
+                    customerLink={params.row._links.self.href} 
+                    />
+        )}];
 
     return (
         <>
