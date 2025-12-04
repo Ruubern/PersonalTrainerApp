@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { AppBar, Toolbar, Typography, CssBaseline, Drawer, IconButton, List, ListItem, ListItemText, ListItemButton, Container, Box } from '@mui/material';
+import { useState } from 'react';
+import { AppBar, Toolbar, Typography, CssBaseline, Drawer, IconButton, List, ListItem, ListItemText, ListItemButton, Box } from '@mui/material';
 import Customerlist from './components/Customerlist';
 import Traininglist from './components/Traininglist';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -61,7 +61,7 @@ function App() {
         width: '100%'}}>
 
         {view === 'customers' && <Customerlist />}
-        {view === 'trainings' && <Traininglist />}
+        {view === 'training sessions' && <Traininglist />}
         {view === 'calendar' && <TrainingCalendar />}
       </Box>
     </Box>

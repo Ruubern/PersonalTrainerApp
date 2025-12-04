@@ -4,7 +4,6 @@ import { DataGrid, } from "@mui/x-data-grid";
 import type { GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
 import Button from "@mui/material/Button";
 import { getCustomers } from "../customerApi";
-import { Add, Edit } from "@mui/icons-material";
 import AddCustomer from "./AddCustomer";
 import EditCustomer from "./EditCustomer";
 import { deleteCustomer } from "../customerApi";

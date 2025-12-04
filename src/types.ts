@@ -7,9 +7,9 @@ export type Customer = {
     email: string;
     phone: string;
     _links: {
-        self: string;
-        customer: string;
-        trainings: string;
+        self: { href: string };
+        customer: { href: string };
+        trainings: { href: string };
     }
 }
 
@@ -30,7 +30,11 @@ export type Training = {
         email: string;
         phone: string;
     }
-
+    _links: {
+        self: { href: string };
+        training: { href: string };
+        customer: { href: string };
+    }
 }
 
 export type TrainingForm = {

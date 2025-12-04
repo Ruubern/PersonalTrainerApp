@@ -13,7 +13,7 @@ type EditCustomerProps = {
     customerRow: Customer;
 }
 
-export default function EditCustomer({ fetchCustomers, customerRow }: EditCustomerProps) { 
+export default function EditCustomer({ fetchCustomers, customerRow }: EditCustomerProps) { // otetaan propsit vastaan
     const [open, setOpen] = useState(false);
     const [customer, setCustomer] = useState<CustomerForm>({
         firstname: "",
