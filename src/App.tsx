@@ -4,12 +4,13 @@ import Customerlist from './components/Customerlist';
 import Traininglist from './components/Traininglist';
 import MenuIcon from '@mui/icons-material/Menu';
 import TrainingCalendar from './components/TrainingCalendar';
+import TrainingCharts from './components/TrainingCharts';
 
 function App() {
   const [open, setOpen] = useState(false);
   const [view, setView] = useState('customers');
 
-  const handleViewChange = (newView: 'customers' | 'trainings' | 'calendar') => {
+  const handleViewChange = (newView: 'customers' | 'trainings' | 'calendar' | 'statistics') => {
     setView(newView);   //Asettaa uuden näkymän
     setOpen(false);     //Sulkee drawerin valinnan jälkeen
   };
@@ -49,6 +50,11 @@ function App() {
                 <ListItemText primary="Calendar" />
               </ListItemButton>
             </ListItem>
+            <ListItem disablePadding>
+              <ListItemButton onClick={() => handleViewChange('statistics')}>
+                <ListItemText primary="Statistics" />
+              </ListItemButton>
+            </ListItem>
           </List>
       </Drawer>
 
@@ -61,8 +67,9 @@ function App() {
         width: '100%'}}>
 
         {view === 'customers' && <Customerlist />}
-        {view === 'training sessions' && <Traininglist />}
+        {view === 'trainings' && <Traininglist />}
         {view === 'calendar' && <TrainingCalendar />}
+        {view === 'statistics' && <TrainingCharts />}
       </Box>
     </Box>
   );
